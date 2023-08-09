@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 
 const app = express()
-const port = 3009
+const port = process.env.PORT || 5050
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
