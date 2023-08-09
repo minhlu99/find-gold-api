@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsdoc = require('swagger-jsdoc')
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 const app = express()
 const port = 3009
@@ -38,7 +39,9 @@ const options = {
 const swaggerSpec = swaggerJsdoc(options)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
-mongoose.connect('mongodb+srv://find-gold:find-gold@cluster0.mw6xpff.mongodb.net/Find-Gold')
+
+mongoose.connect(process.env.DATABASE_URL)
+
 mongoose.connection
 .once('open', function () {
     console.log('MongoDB running')
